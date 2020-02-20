@@ -10,5 +10,6 @@ namespace FrequentFlyers
     {
         public:
             virtual Miles UpdateMiles(const Miles& miles, int earnedMiles) = 0;
+            virtual ~IEarningStatus() {}
     };
 }

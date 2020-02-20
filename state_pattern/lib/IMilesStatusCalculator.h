@@ -8,5 +8,6 @@ namespace FrequentFlyers
     {
         public:
             virtual FrequentFlyers::EarningStatus NextStatus(const Miles& miles) const = 0;
+            virtual ~IMilesStatusCalculator() {}
     };
 }
