@@ -8,6 +8,12 @@
 namespace FrequentFlyers
 {
     const int EliteEarningStatus::ExtraEarningPercent = 10;
+
+    EliteEarningStatus::EliteEarningStatus(const IMilesStatusCalculator& statusCalculator)
+        : mStatusCalculator(statusCalculator)
+    {
+
+    }
            
     Miles EliteEarningStatus::UpdateMiles(const Miles& miles, int earnedMiles)
     {
