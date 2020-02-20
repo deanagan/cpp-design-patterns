@@ -1,12 +1,32 @@
+#include "Miles.h"
+#include "EarningStatusContext.h"
 #include "gtest/gtest.h"
 
-//#include "Hello.h"
-
-TEST(message_test,content)
+class StatePatternTest : public ::testing::Test 
 {
+protected:
+    void SetUp() override 
+    {
+    }
 
-    // State::HelloClass hc;
-    // auto result = hc.Hello("Joe");
-    // EXPECT_EQ("Hello Joe", result);
+    void TearDown() override 
+    {
+
+    }
     
+    FrequentFlyers::Miles mMiles;
+    FrequentFlyers::EarningStatusContext mEarningStatusContext;
+};
+
+TEST_F(StatePatternTest, ShouldExpect_MilesToIncreaseByAccruedMiles_WhenAccruingMilesinRedStatus) 
+{
+    // Arrange
+    mMiles.Level = "Red";
+    mMiles.TotalAccumulatedMiles = 10;
+
+    // Act
+    mMiles = mEarningStatusContext.UpdateMiles(mMiles, 30);
+
+    // Assert
+    EXPECT_EQ(40, mMiles.TotalAccumulatedMiles);
 }
