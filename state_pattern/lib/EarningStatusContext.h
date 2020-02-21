@@ -14,7 +14,6 @@ namespace FrequentFlyers
         public:
             EarningStatusContext();
             Miles UpdateMiles(const Miles& miles, int earnedMiles) override;
-            void UpdateStatus(FrequentFlyers::EarningStatus status) override;
         private:
             FrequentFlyers::EarningStatus mCurrentStatus;
             MilesStatusCalculator mStatusCalculator;

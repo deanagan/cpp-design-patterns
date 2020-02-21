@@ -13,11 +13,9 @@ namespace FrequentFlyers
 
     Miles EarningStatusContext::UpdateMiles(const Miles& miles, int earnedMiles)
     {
-        return mEarningStatus[mCurrentStatus]->UpdateMiles(miles, earnedMiles);
+        const auto updatedMiles = mEarningStatus[mCurrentStatus]->UpdateMiles(miles, earnedMiles);
+        mCurrentStatus = mStatusCalculator.NextStatus(updatedMiles);
+        return updatedMiles;
     }
 
-    void EarningStatusContext::UpdateStatus(FrequentFlyers::EarningStatus status)
-    {
-        mCurrentStatus = status;
-    }
 } 

@@ -18,7 +18,7 @@ namespace FrequentFlyers
         Miles updatedMiles;
         
         updatedMiles.TotalAccumulatedMiles = miles.TotalAccumulatedMiles + earnedMiles;
-        mStatusCalculator.NextStatus(updatedMiles);
+        updatedMiles.Level = "Red";
         return updatedMiles;
     }
 

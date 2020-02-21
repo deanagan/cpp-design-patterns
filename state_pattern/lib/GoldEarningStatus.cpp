@@ -17,9 +17,9 @@ namespace FrequentFlyers
     {
         Miles updatedMiles;
         
-        earnedMiles += ((ExtraEarningPercent / 100) * earnedMiles);
+        earnedMiles += ((ExtraEarningPercent * earnedMiles) / 100);
         updatedMiles.TotalAccumulatedMiles = miles.TotalAccumulatedMiles + earnedMiles;
-        mStatusCalculator.NextStatus(updatedMiles);
+        updatedMiles.Level = "Gold";
         return updatedMiles;
     }
 
