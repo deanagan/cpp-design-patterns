@@ -30,3 +30,19 @@ TEST_F(StatePatternTest, ShouldExpect_MilesToIncreaseByAccruedMiles_WhenAccruing
     // Assert
     EXPECT_EQ(40, mMiles.TotalAccumulatedMiles);
 }
+
+
+TEST_F(StatePatternTest, ShouldExpect_MilesToGoIntoGoldStatus_WhenAccruingMilesOverGoldStatusThreshold) 
+{
+    // Arrange
+    mMiles.Level = "Red";
+    mMiles.TotalAccumulatedMiles = 10;
+
+    // Act
+    mMiles = mEarningStatusContext.UpdateMiles(mMiles, 200);
+    mMiles = mEarningStatusContext.UpdateMiles(mMiles, 100);
+
+    // Assert
+    EXPECT_EQ(315, mMiles.TotalAccumulatedMiles);
+    EXPECT_EQ("Gold", mMiles.Level);
+}
