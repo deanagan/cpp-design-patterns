@@ -9,5 +9,7 @@ namespace FrequentFlyers
     {
         public:
             FrequentFlyers::EarningStatus NextStatus(const Miles& miles) const override;
+        private:
+            static const int GOLD_THRESHOLD;
     };
 }
