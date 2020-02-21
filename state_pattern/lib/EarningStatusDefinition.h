@@ -6,6 +6,5 @@ enum class EarningStatus
 {
     RED,
     GOLD,
-    ELITE,
 };
 }
