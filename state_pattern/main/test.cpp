@@ -1,14 +1,23 @@
 
 
-#include "lib/EarningStatusContext.h"
+#include "EarningStatusContext.h"
 #include <iostream>
 #include <memory>
 
 int main()
 {
-   // auto esc = std::make_unique<FrequentFlyers::EarningStatusContext>();
+   FrequentFlyers::EarningStatusContext esc;
 
-    //State::HelloClass hc;
-    std::cout << "Hello World!\n";
-    //std::cout << hc.Hello("Hose") << "\n";
+   FrequentFlyers::Miles miles;
+
+   miles.Level = "Red";
+   miles.TotalAccumulatedMiles = 0;
+
+   miles = esc.UpdateMiles(miles, 20); 
+
+   std::cout << miles.TotalAccumulatedMiles << " miles total at " << miles.Level << "status.\n";
+
+   miles = esc.UpdateMiles(miles, 20); 
+
+   std::cout << miles.TotalAccumulatedMiles << " miles total at " << miles.Level << "status.\n";
 }
