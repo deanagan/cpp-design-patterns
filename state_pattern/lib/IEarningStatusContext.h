@@ -9,6 +9,7 @@ class IEarningStatusContext
 {
     public:
         virtual Miles UpdateMiles(const Miles& miles, int earnedMiles) = 0;
+        virtual void SetStatusLevel(IEarningStatus* pStatus) = 0;
         virtual ~IEarningStatusContext() {}
 };
 }
