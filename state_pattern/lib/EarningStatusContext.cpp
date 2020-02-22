@@ -1,21 +1,21 @@
 #include "EarningStatusContext.h"
-#include "RedEarningStatus.h"
-#include "GoldEarningStatus.h"
+
 
 namespace FrequentFlyers
 {
-    EarningStatusContext::EarningStatusContext()
-        : mCurrentStatus(FrequentFlyers::EarningStatus::RED)
+    EarningStatusContext::EarningStatusContext(IEarningStatus* pDefaultEarningStatus)
+        : mpCurrentEarningStatus((pDefaultEarningStatus != nullptr) ? pDefaultEarningStatus : &mDefaultEarningStatus)
     {
-        mEarningStatus[EarningStatus::RED] = std::make_unique<RedEarningStatus>(mStatusCalculator);
-        mEarningStatus[EarningStatus::GOLD] = std::make_unique<GoldEarningStatus>(mStatusCalculator);
     }
 
     Miles EarningStatusContext::UpdateMiles(const Miles& miles, int earnedMiles)
     {
-        const auto updatedMiles = mEarningStatus[mCurrentStatus]->UpdateMiles(miles, earnedMiles);
-        mCurrentStatus = mStatusCalculator.NextStatus(updatedMiles);
-        return updatedMiles;
+        return mpCurrentEarningStatus->UpdateMiles(miles, earnedMiles);
+    }
+
+    void EarningStatusContext::SetStatusLevel(IEarningStatus* pStatus)
+    {
+        mpCurrentEarningStatus = pStatus;
     }
 
 } 
