@@ -10,9 +10,9 @@ A collection of C++ design pattern demos with gmock and gtest
 
 # Notes
 * When running on systems where you need to specify the exact C++ compiler version, you can add `--cxxopt='-std=c++14'`
-e.g.
-Build Only: `bazel build ... --cxxopt='-std=c++14'`
-Build and Run Test: `bazel run //test:tests --cxxopt='-std=c++14'`
+e.g.<br/>
+    * Build Only: `bazel build ... --cxxopt='-std=c++14'`
+    * Build and Run Test: `bazel run //test:tests --cxxopt='-std=c++14'`
 
-* If you're on *nix type system and want to run valgrind, you can do it against the test:
-`valgrind bazel run //test:tests`
+* If you're on *nix type system and want to run valgrind, you can do it against the test:<br/>
+`valgrind bazel-bin/test/tests`
