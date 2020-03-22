@@ -3,7 +3,16 @@ A collection of C++ design pattern demos with gmock and gtest
 
 
 # How To Run the Demos
-1. Demos are divided into folders with the pattern. Cd to one of these folders.
-2. To build all, enter `bazel build ...`
-3. To execute just the main folder (primarily for testing temporary code), enter `bazel run main`
-4. To execute the tests in the test folder, enter `bazel run //test:tests`
+1. Demos are divided into folders with the pattern. Change directory to one of these folders.
+2. To build only, enter `bazel build ...`
+3. To build and execute the tests in the test folder, enter `bazel run //test:tests`
+
+
+# Notes
+* When running on systems where you need to specify the exact C++ compiler version, you can add `--cxxopt='-std=c++14'`
+e.g.
+Build Only: `bazel build ... --cxxopt='-std=c++14'`
+Build and Run Test: `bazel run //test:tests --cxxopt='-std=c++14'`
+
+* If you're on *nix type system and want to run valgrind, you can do it against the test:
+`valgrind bazel run //test:tests`
