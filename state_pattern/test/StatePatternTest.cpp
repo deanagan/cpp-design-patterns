@@ -3,32 +3,29 @@
 #include "RedEarningStatus.h"
 #include "GoldEarningStatus.h"
 
+#include "MockEarningStatus.h"
+
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 
-class StatePatternTest : public ::testing::Test 
+namespace StatePatternTest
+{
+class StatePatternTestShould : public ::testing::Test
 {
 protected:
-    void SetUp() override 
+    void SetUp() override
     {
     }
 
-    void TearDown() override 
+    void TearDown() override
     {
 
     }
-    
+
     FrequentFlyers::Miles mMiles;
 };
 
-class MockEarningStatus : public FrequentFlyers::IEarningStatus
-{
- public:
-  MOCK_METHOD(FrequentFlyers::Miles, UpdateMiles, (const FrequentFlyers::Miles& miles, int earnedMiles), (override));
-  
-};
-
-TEST_F(StatePatternTest, ShouldExpect_MilesToIncreaseByAccruedMiles_WhenAccruingMilesinRedStatus) 
+TEST_F(StatePatternTestShould, ExpectMilesToIncreaseByAccruedMiles_WhenAccruingMilesinRedStatus)
 {
     // Arrange
     FrequentFlyers::RedEarningStatus redStatus;
@@ -43,7 +40,7 @@ TEST_F(StatePatternTest, ShouldExpect_MilesToIncreaseByAccruedMiles_WhenAccruing
 }
 
 
-TEST_F(StatePatternTest, ShouldExpect_MilesToIncreaseByAccruedMilesWithBonus_WhenAccruingMilesinGoldStatus) 
+TEST_F(StatePatternTestShould, ExpectMilesToIncreaseByAccruedMilesWithBonus_WhenAccruingMilesinGoldStatus)
 {
     // Arrange
     FrequentFlyers::GoldEarningStatus goldStatus;
@@ -57,7 +54,7 @@ TEST_F(StatePatternTest, ShouldExpect_MilesToIncreaseByAccruedMilesWithBonus_Whe
     EXPECT_EQ(115, mMiles.TotalAccumulatedMiles);
 }
 
-TEST_F(StatePatternTest, ShouldExpect_MilesToHaveNoBonus_WhenCreatingContextWithNullptr) 
+TEST_F(StatePatternTestShould, ExpectMilesToHaveNoBonus_WhenCreatingContextWithNullptr)
 {
     // Arrange
     FrequentFlyers::EarningStatusContext earningContext{nullptr};
@@ -70,7 +67,7 @@ TEST_F(StatePatternTest, ShouldExpect_MilesToHaveNoBonus_WhenCreatingContextWith
     EXPECT_EQ(10, mMiles.TotalAccumulatedMiles);
 }
 
-TEST_F(StatePatternTest, ShouldExpect_MilesToIncreaseByExpected_WhenAccruingMilesUsingMockedEarningStatus) 
+TEST_F(StatePatternTestShould, ExpectMilesToIncreaseByExpected_WhenAccruingMilesUsingMockedEarningStatus)
 {
     // Arrange
     FrequentFlyers::Miles resultMiles;
@@ -88,4 +85,5 @@ TEST_F(StatePatternTest, ShouldExpect_MilesToIncreaseByExpected_WhenAccruingMile
 
     // Assert
     EXPECT_EQ(40, mMiles.TotalAccumulatedMiles);
+}
 }
