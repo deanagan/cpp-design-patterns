@@ -4,10 +4,10 @@
 
 namespace DecoratorPattern
 {
-    class HtmlifyText : public TitleValueDecorator
+    class BoldenText : public TitleValueDecorator
     {
         public:
-        explicit HtmlifyText(ElementType::TextElementPtr& textElement);
+        explicit BoldenText(TextElement* textElement);
         std::string Value() const override;
     };
 

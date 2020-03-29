@@ -13,8 +13,4 @@ namespace DecoratorPattern
         virtual ~TextElement() = default;
     };
 
-    namespace ElementType
-    {
-        using TextElementPtr = std::unique_ptr<TextElement>;
-    }
 }

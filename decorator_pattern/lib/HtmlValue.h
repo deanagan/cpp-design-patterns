@@ -5,10 +5,10 @@
 
 namespace DecoratorPattern
 {
-    class TitleValue : public TextElement
+    class HtmlValue : public TextElement
     {
         public:
-        explicit TitleValue(std::string title);
+        explicit HtmlValue(std::string title);
         std::string Value() const override;
 
         private:

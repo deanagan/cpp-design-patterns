@@ -1,20 +1,18 @@
-#include "HtmlifyText.h"
+#include "BoldenText.h"
 #include "TitleValueDecorator.h"
 
 namespace DecoratorPattern
 {
 
-HtmlifyText::HtmlifyText(ElementType::TextElementPtr& textElement)
+BoldenText::BoldenText(TextElement* textElement)
     : TitleValueDecorator(textElement)
 {
 
 }
 
-std::string HtmlifyText::Value() const
+std::string BoldenText::Value() const
 {
     return std::string{};
 }
-
-
 
 }

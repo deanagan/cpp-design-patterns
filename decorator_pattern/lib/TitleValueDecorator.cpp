@@ -4,8 +4,8 @@
 namespace DecoratorPattern
 {
 
-TitleValueDecorator::TitleValueDecorator(ElementType::TextElementPtr& textToWrap)
-    : wrappedText(std::move(textToWrap))
+TitleValueDecorator::TitleValueDecorator(TextElement* textToWrap)
+    : wrappedText(textToWrap)
 {
 
 }

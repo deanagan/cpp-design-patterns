@@ -1,15 +1,15 @@
-#include "TitleValue.h"
+#include "HtmlValue.h"
 #include <string>
 
 namespace DecoratorPattern
 {
-TitleValue::TitleValue(std::string title)
+HtmlValue::HtmlValue(std::string title)
     : title(std::move(title))
 {
 
 }
 
-std::string TitleValue::Value() const
+std::string HtmlValue::Value() const
 {
     return title;
 }
