@@ -3,14 +3,15 @@
 
 namespace DecoratorPattern
 {
-TitleValue::TitleValue(std::string id)
+TitleValue::TitleValue(std::string title)
+    : title(std::move(title))
 {
 
 }
 
 std::string TitleValue::Value() const
 {
-    return std::string{};
+    return title;
 }
 
 }

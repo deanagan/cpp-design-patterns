@@ -8,8 +8,11 @@ namespace DecoratorPattern
     class TitleValue : public TextElement
     {
         public:
-        explicit TitleValue(std::string id);
+        explicit TitleValue(std::string title);
         std::string Value() const override;
+
+        private:
+        std::string title;
 
     };
 }
