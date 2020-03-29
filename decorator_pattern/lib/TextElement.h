@@ -1,15 +1,20 @@
 #pragma once
 
-#include "ITextElement.h"
 #include <string>
+#include <memory>
 
 namespace DecoratorPattern
 {
-    class TextElement : public ITextElement
+
+    class TextElement
     {
         public:
-        explicit TextElement(std::string id);
-        std::string Value() const override;
-
+        virtual std::string Value() const = 0;
+        virtual ~TextElement() = default;
     };
+
+    namespace ElementType
+    {
+        using TextElementPtr = std::unique_ptr<TextElement>;
+    }
 }
