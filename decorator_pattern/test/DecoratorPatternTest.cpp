@@ -42,7 +42,7 @@ namespace DecoratorPatternTest
 
         ON_CALL(*mockTitle.get(), Value()).WillByDefault(testing::Invoke(
             [] {
-                return "Mock Title Value";
+                return TITLE;
             }
         ));
 
