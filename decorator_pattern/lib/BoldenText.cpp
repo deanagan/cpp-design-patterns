@@ -12,7 +12,7 @@ BoldenText::BoldenText(TextElement* textElement)
 
 std::string BoldenText::Value() const
 {
-    return std::string{};
+    return std::string{"<b>"} + GetWrappedTextElement()->Value() + std::string{"</b>"};
 }
 
 }

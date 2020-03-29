@@ -12,7 +12,7 @@ TitleValueDecorator::TitleValueDecorator(TextElement* textToWrap)
 
 TextElement* TitleValueDecorator::GetWrappedTextElement() const
 {
-    return nullptr;
+    return wrappedText;
 }
 
 }
