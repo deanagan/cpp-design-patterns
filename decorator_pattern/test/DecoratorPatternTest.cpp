@@ -38,7 +38,7 @@ namespace DecoratorPatternTest
 
     TEST_F(DecoratorPatternTestShould, ExpectValueInstanceHtmlified_WhenUsingTitleValueDecorator)
     {
-        auto mockTitle = std::make_unique<MockHtmlValue>();
+        auto mockTitle = std::make_unique<::testing::NiceMock<MockHtmlValue>>();
 
         ON_CALL(*mockTitle.get(), Value()).WillByDefault(testing::Invoke(
             [] {
