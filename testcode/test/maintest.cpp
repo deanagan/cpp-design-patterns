@@ -39,13 +39,14 @@ TEST_P(MainParameteredTestShould, SumIsCorrect_WhenUsingParameteredTest) {
     std::tie (x,y,total) = GetParam();
 
     // Act
+    std::cout << "Adding " << x << " and " << y << "\n";
     const auto result = mathOp_.Sum(x,y);
 
     // Assert
     EXPECT_EQ(total, result);
 }
 
-TEST_F(MainTestShould, SumIsCorrect_WhenGiven2PositiveNumbers)
+TEST_F(MainTestShould, DISABLED_SumIsCorrect_WhenGiven2PositiveNumbers)
 {
     // Arrange
     TestCode::MathOp mathOp;
