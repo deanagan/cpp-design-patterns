@@ -27,7 +27,7 @@ namespace TestCode
         return sortedNumbers.front();
     }
 }
-
+/*
 int main()
 {
     std::vector<int> sortedNumbers{4, 7, 10, 11, 12, 17};
@@ -47,3 +47,4 @@ int main()
         });
         std::copy(begin(sortedNumbers), end(sortedNumbers), std::ostream_iterator<int>(std::cout, ", ") );
 }
+*/
