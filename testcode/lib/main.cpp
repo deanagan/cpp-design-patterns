@@ -12,19 +12,10 @@ namespace TestCode
     }
 
     int MathOp::NearestValue(const std::vector<int>& numbers, int search) const {
-        std::vector<int> sortedNumbers(numbers);
-        std::sort(begin(sortedNumbers), end(sortedNumbers), [search](int a, int b) -> bool {
-            const auto adiff = std::abs(a - search);
-            const auto bdiff = std::abs(b - search);
 
-            const auto res = (adiff - bdiff);
-            if (res == 0) {
-                return a < b;
-            }
-
-            return adiff < bdiff;
+        return *std::min_element(begin(numbers), end(numbers), [search](int a, int b) -> bool {
+            return (std::abs(a - search) < std::abs(b - search)) || (a < b);
         });
-        return sortedNumbers.front();
     }
 }
 /*
