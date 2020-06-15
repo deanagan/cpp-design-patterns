@@ -8,7 +8,6 @@ template<typename ObservableType>
 class Customer : public IObserver<ObservableType>
 {
 public:
-
     void Update(ObservableType& ot) override;
 
 private:
