@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ISubject.h"
+#include <algorithm>
 
 namespace ObserverPattern
 {
