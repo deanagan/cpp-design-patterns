@@ -5,23 +5,23 @@
 namespace ObserverPattern
 {
 
-template<typename ObserverType>
-class Retailer : public ISubject<ObserverType>
+template<typename ObservableType>
+class Retailer : public ISubject<ObservableType>
 {
 public:
-    void Attach(IObserver observer) override
+    void Register(IObserver<ObservableType>& observer) override
     {
-        subscribers_.push_back(observer);
+        subscribers_.push_back(&observer);
     }
 
     void Notify(ObservableType& ot) const override
     {
-        std::for_each(begin(subscribers), end(subsribers), [](const auto& sub) {
-            sub.Update(ot);
+        std::for_each(begin(subscribers_), end(subscribers_), [&ot](const auto& sub) {
+            sub->Update(ot);
         });
     }
 private:
-    std::vector<ObserverType> subscribers_;
+    std::vector<IObserver<ObservableType>*> subscribers_;
 };
 
 }

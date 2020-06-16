@@ -1,5 +1,6 @@
 #include "Customer.h"
-#include "MockSubject.h"
+#include "Retailer.h"
+#include "MockObserver.h"
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
@@ -27,7 +28,21 @@ namespace ObserverPatternTest
         }
     };
 
-    using TypesToTest = ::testing::Types<int, std::string>;
+    struct Coordinate
+    {
+        int x;
+        int y;
+
+        bool operator==(const Coordinate& coordinate) const {
+            return (coordinate.x == x) && (coordinate.y == y);
+        }
+
+        bool operator !=(const Coordinate& coordinate) const {
+            return !(coordinate == *this);
+        }
+    };
+
+    using TypesToTest = ::testing::Types<int, std::string, float, Coordinate>;
     TYPED_TEST_SUITE(ObserverPatternTestShould, TypesToTest);
 
     TYPED_TEST(ObserverPatternTestShould, CheckCustomer_UpdatesTotalItem_WhenUpdateInvoked)
@@ -45,27 +60,29 @@ namespace ObserverPatternTest
         EXPECT_EQ(1, customer->TotalItems());
     }
 
-    TYPED_TEST(ObserverPatternTestShould, DISABLED_CheckMockObserver_ReceivesNotification_WhenActualRetailerNotifies)
+    TYPED_TEST(ObserverPatternTestShould, CheckMockObserver_ReceivesNotification_WhenActualRetailerNotifies)
     {
         using namespace std;
 
         // Arrange
-        //auto mockObserver = make_unique<MockObserver>();
-        //auto retailer = make_unique<Retailer<TypeParam>();
-        // auto updateCount = 0;
+        TypeParam param;
+        auto mockObserver = make_unique<MockObserver<TypeParam>>();
+        auto retailer = make_unique<ObserverPattern::Retailer<TypeParam>>();
+        auto updateCount = 0;
 
-        // ON_CALL(*mockObserver.get(), Update(testing::_)).WillByDefault(testing::Invoke(
-        //     [&updateCount] {
-        //         ++updateCount;
-        //     }
-        // ));
-        // retailer.Register(mockObserver);
+        EXPECT_CALL(*mockObserver.get(), Update(param)).WillOnce(testing::Invoke(
+            [&updateCount] (auto param) {
+                ++updateCount;
+            }
+        ));
 
-        // // Act
-        // retailer.Notify(someObject);
+        retailer->Register(*mockObserver.get());
 
-        // // Assert
-        // EXPECT_EQ(1, updateCount);
+        // Act
+        retailer->Notify(param);
+
+        // Assert
+        EXPECT_EQ(1, updateCount);
 
     }
 
