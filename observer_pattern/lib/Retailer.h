@@ -2,6 +2,9 @@
 
 #include "ISubject.h"
 #include <algorithm>
+#include <utility>
+#include <functional>
+#include <iostream>
 
 namespace ObserverPattern
 {
@@ -10,19 +13,21 @@ template<typename ObservableType>
 class Retailer : public ISubject<ObservableType>
 {
 public:
-    void Register(IObserver<ObservableType>& observer) override
+    using ObserverType = IObserver<ObservableType>;
+    void Register(ObserverType& observer) override
     {
-        subscribers_.push_back(&observer);
+        subscribers_.push_back(observer);
     }
 
     void Notify(ObservableType& ot) const override
     {
         std::for_each(begin(subscribers_), end(subscribers_), [&ot](const auto& sub) {
-            sub->Update(ot);
+            sub.get().Update(ot);
         });
     }
-private:
-    std::vector<IObserver<ObservableType>*> subscribers_;
-};
 
+
+private:
+    std::vector<std::reference_wrapper<ObserverType>> subscribers_;
+};
 }
