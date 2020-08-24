@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/deanagan/cpp-design-patterns.svg?branch=master)](https://travis-ci.com/github/deanagan/cpp-design-patterns)
 # cpp-design-patterns
-A collection of C++ design pattern demos with gmock and gtest
+A collection of C++ design pattern demos with gmock and gtest. This repo also includes C++ idioms.
 
 
 # How To Run the Demos
