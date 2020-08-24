@@ -1,9 +1,9 @@
 cc_test(
     name = "tests",
     srcs = glob(["*.cpp", "*.h"]),
-    copts = ["-Ilib"],
+    copts = ["-Iobserver_pattern/lib"],
     deps = [
-        "//lib:library_under_test",
+        "//observer_pattern/lib:observer_pattern",
         "@googletest//:gtest_main",
     ],
 )

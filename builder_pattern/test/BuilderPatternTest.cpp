@@ -14,15 +14,17 @@ namespace BuilderPatternTest
         static const int INITAL_AMOUNT = 100;
     }
 
+    using ::testing::NiceMock;
+
     class BuilderPatternTestShould : public ::testing::Test
     {
     protected:
 
-        std::unique_ptr<MockAccount> m_pMockAccount;
+        std::unique_ptr<NiceMock<MockAccount>> m_pMockAccount;
 
         void SetUp() override
         {
-            m_pMockAccount = std::make_unique<MockAccount>();
+            m_pMockAccount = std::make_unique<NiceMock<MockAccount>>();
         }
 
         void TearDown() override

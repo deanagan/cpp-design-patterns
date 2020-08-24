@@ -1,7 +1,6 @@
 cc_library(
-    name = "library_under_test",
+    name = "observer_pattern",
     srcs = glob(["**/*.cpp"]),
     hdrs = glob(["**/*.h"]),
-    copts = ["-std=c++14", "-Wall", "-pedantic"],
     visibility = ["//visibility:public"],
 )
