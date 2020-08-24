@@ -22,7 +22,7 @@ namespace CuriouslyRecurringTemplatePattern
             const auto *counter = static_cast<CounterType *>(this);
             const auto result = counter->Result();
 
-            std::for_each(begin(result), end(result), [&fn](const decltype(result)::value_type &entry) {
+            std::for_each(begin(result), end(result), [&fn](const typename decltype(result)::value_type &entry) {
                 fn(entry);
             });
         }
