@@ -17,3 +17,13 @@ e.g.<br/>
 
 * If you're on *nix type system and want to run valgrind, you can do it against the test:<br/>
 `valgrind bazel-bin/test/tests`
+
+
+# Problem Running on Windows
+I get this when running build
+`Action failed to execute: java.io.IOException: ERROR: src/main/native/windows/process.cc(202):`
+
+To fix this, do:
+`set BAZEL_VC=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC`
+
+See Bazel Github for details: https://github.com/bazelbuild/bazel/issues/8589
